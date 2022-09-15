@@ -6,7 +6,8 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 RUN echo 'alias phpcs="php vendor/bin/phpcs -psn --colors"' >> ~/.bashrc \
-    && echo 'alias phpcs-fix="php vendor/bin/phpcbf"' >> ~/.bashrc
+    && echo 'alias phpcs-fix="php vendor/bin/phpcbf"' >> ~/.bashrc \
+    && echo 'alias phpstan="php vendor/bin/phpstan analyse -c phpstan.neon"' >> ~/.bashrc
 
 RUN apt-get update && apt-get install -y \
     git \
