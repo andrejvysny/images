@@ -9,13 +9,6 @@ ENV PATH "/root/.composer/vendor/bin:$PATH"
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-RUN composer global require --prefer-stable \
-        phpstan/phpstan \
-        phpunit/phpunit \
-        "squizlabs/php_codesniffer=*" \
-        && phpcs --config-set colors 1 && phpcs --config-set extensions php
-
-        
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -26,5 +19,9 @@ RUN apt-get update && apt-get install -y \
     unzip zip \
     && install-php-extensions ${extensions}
 
-
+RUN composer global require \
+        phpstan/phpstan \
+        phpunit/phpunit \
+        squizlabs/php_codesniffer 
+        
 WORKDIR /var/www
