@@ -1,13 +1,14 @@
-name: Cli - Build and Publish Image
+name: Apache - Build and Publish Image
 
 on:
   # run it on push to the default repository branch
   workflow_dispatch:
 
 jobs:
+ 
   # define job to build and publish docker image
-  cli:
-    name: Build Cli Image
+  apache:
+    name: Build Apache Image
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-latest
 
@@ -27,12 +28,12 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build image and push to Docker Hub and GitHub Container Registry
+      - name: Build Apache Image
         uses: docker/build-push-action@v3
         with:
           # relative path to the place where source code with Dockerfile is located
-          context: ./cli/
+          context: ./apache/
           # Note: tags has to be all lower-case
-          tags: ghcr.io/andrejvysny/cli
+          tags: ghcr.io/andrejvysny/apache
           # build on feature branches, push only on main branch
           push: true
