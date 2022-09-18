@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
     unzip zip \
     && install-php-extensions ${extensions}
 
-RUN composer install
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html
 
