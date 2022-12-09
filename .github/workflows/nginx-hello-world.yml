@@ -1,4 +1,4 @@
-name: Node Hello World - Build and Push Image
+name: Nginx Hello World - Build and Push Image
 
 on:
   push:
