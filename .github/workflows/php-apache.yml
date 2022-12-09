@@ -1,7 +1,9 @@
 name: PHP Apache - Build and Push Image
 
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - 'php/php-apache/**'
 
 jobs:
  

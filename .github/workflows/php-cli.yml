@@ -1,7 +1,9 @@
 name: PHP Cli - Build and Push Image
 
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - 'php/php-cli/**'
 
 jobs:
 
