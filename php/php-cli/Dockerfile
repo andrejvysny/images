@@ -5,9 +5,9 @@ ENV COMPOSER_NO_INTERACTION 1
 ENV PATH "/root/.composer/vendor/bin:$PATH"
 
 RUN apt-get update && apt-get install -y \
-    git \
+    git \
     curl \
-    wget \
+    wget \
     zip \
     unzip zip
 
