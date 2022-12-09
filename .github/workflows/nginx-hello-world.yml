@@ -3,14 +3,14 @@ name: Node Hello World - Build and Push Image
 on:
   push:
     paths:
-      - 'node/hello-world/**'
+      - 'nginx/hello-world/**'
 
 jobs:
  
   build_and_push:
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
-      context: ./node/hello-world/
-      tags: ghcr.io/andrejvysny/node-hello-world
+      context: ./nginx/hello-world/
+      tags: ghcr.io/andrejvysny/nginx-hello-world
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
