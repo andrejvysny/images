@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     wget \
     zip \
-    unzip zip \
+    unzip zip
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
