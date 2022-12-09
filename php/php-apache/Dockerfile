@@ -1,18 +1,18 @@
 FROM php:8.1-apache
 
-ARG extensions="gd intl exif opcache pdo_mysql dom xml amqp"
-
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-
 RUN apt-get update && apt-get install -y \
     git \
     curl \
     zip \
     nano \
-    unzip zip \
-    && install-php-extensions ${extensions}
+    unzip zip
 
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+ARG extensions="gd intl exif opcache pdo_mysql amqp"
+
+RUN install-php-extensions ${extensions}
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
