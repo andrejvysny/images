@@ -1,4 +1,4 @@
-name: PHP Apache - Build and Push Image
+name: PHP Apache
 
 on:
   push:

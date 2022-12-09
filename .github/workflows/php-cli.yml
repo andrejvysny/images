@@ -1,4 +1,4 @@
-name: PHP Cli - Build and Push Image
+name: PHP Cli
 
 on:
   push:
