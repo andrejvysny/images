@@ -11,4 +11,4 @@ jobs:
       context: ./php/php-apache/
       tags: ghcr.io/andrejvysny/php-apache:8.1
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      access_token: ${{ secrets.GITHUB_TOKEN }}
