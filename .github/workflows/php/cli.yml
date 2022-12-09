@@ -1,0 +1,14 @@
+name: PHP Cli - Build and Push Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build_and_push:
+    uses: /andrejvysny/workflows/.github/workflows/docker/docker_build_push_ghcr.yaml@main
+    with:
+      context: ./php/php-cli/
+      tags: ghcr.io/andrejvysny/php-cli:8.1
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
