@@ -16,7 +16,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 ARG extensions="gd xdebug intl exif opcache pdo_mysql amqp"
 
-
 RUN install-php-extensions ${extensions}
 
 RUN composer global require \
