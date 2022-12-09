@@ -1,6 +1,6 @@
-FROM php:8.1
+FROM php:8.1-cli
 
-ARG extensions="gd xdebug intl exif opcache pdo_mysql dom xml amqp"
+ARG extensions="gd xdebug intl exif opcache pdo_mysql amqp"
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_NO_INTERACTION 1
@@ -11,11 +11,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 
 RUN apt-get update && apt-get install -y \
-    git \
+    git \
     curl \
+    wget \
     zip \
-    vim \
-    nano \
     unzip zip \
     && install-php-extensions ${extensions}
 
