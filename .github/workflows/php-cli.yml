@@ -11,4 +11,4 @@ jobs:
       context: ./php/php-cli/
       tags: ghcr.io/andrejvysny/php-cli:8.1
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      access_token: ${{ secrets.GITHUB_TOKEN }}
