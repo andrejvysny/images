@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'php/php-cli/**'
+      - '.github/workflows/php-cli.yml'
+    workflow_dispatch:
 
 jobs:
 

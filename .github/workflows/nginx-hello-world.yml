@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'nginx/hello-world/**'
+      - '.github/workflows/nginx-hello-world.yml'
+    workflow_dispatch:
 
 jobs:
  
