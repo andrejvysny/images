@@ -5,25 +5,34 @@
 
 ![Nginx-HelloWorld](https://github.com/andrejvysny/images/actions/workflows/nginx-hello-world.yml/badge.svg)
 
-## PHP 
+# Available Images
 
-### Cli
-
+---
+### PHP - Cli
+```
+ghcr.io/andrejvysny/php-cli:8.1
+```
 - Composer
 - PHP Extensions: `gd xdebug intl exif opcache pdo_mysql amqp`
 - phpstan
 - phpunit
 - squizlabs/php_codesniffer
 
-
-### Apache
-
+### PHP - Apache
+```
+ghcr.io/andrejvysny/php-apache:8.1
+```
 - Document root: `/var/www/html/public`
 - Composer
 - PHP Extensions: `gd intl exif opcache pdo_mysql amqp`
+- Port: 80
 
+---
 
-## Nginx
-
-### Hello World
-Image for testing web.
+### Nginx - Hello World
+```
+ghcr.io/andrejvysny/nginx-hello-world:latest
+```
+- Image for testing web.
+- Document root: `/usr/share/nginx/html`
+- Port: 80
