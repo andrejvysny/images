@@ -1,0 +1,16 @@
+name: PHP Cli
+
+on:
+  push:
+    paths:
+      - 'deploy/versions/**'
+
+jobs:
+
+  build_and_push:
+    uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
+    with:
+      context: ./deploy/versions/
+      tags: ghcr.io/andrejvysny/deploy-versions
+    secrets:
+      access_token: ${{ secrets.GITHUB_TOKEN }}
