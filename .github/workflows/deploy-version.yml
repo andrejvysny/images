@@ -1,4 +1,4 @@
-name: PHP Cli
+name: Deploy Versions
 
 on:
   push:
@@ -11,6 +11,6 @@ jobs:
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./deploy/versions/
-      tags: ghcr.io/andrejvysny/deploy-versions
+      tags: ghcr.io/andrejvysny/deploy-versions@${GITHUB_SHA}
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
