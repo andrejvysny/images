@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'deploy/versions/**'
+      - '.github/workflows/deploy-version.yml'
   workflow_dispatch:
 
 jobs:
@@ -12,6 +13,6 @@ jobs:
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./deploy/versions/
-      tags: ghcr.io/andrejvysny/deploy-versions:${GITHUB_SHA}
+      tags: ghcr.io/andrejvysny/deploy-versions:${{env.GITHUB_SHA}}
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
