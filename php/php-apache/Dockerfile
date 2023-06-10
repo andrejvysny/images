@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-ARG extensions="gd intl exif opcache pdo_mysql mysqli amqp"
+ARG extensions="gd intl exif opcache pdo_mysql pdo_pgsql mysqli amqp"
 
 RUN install-php-extensions ${extensions}
 
