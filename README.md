@@ -36,3 +36,12 @@ ghcr.io/andrejvysny/nginx-hello-world:latest
 - Image for testing web.
 - Document root: `/usr/share/nginx/html`
 - Port: 80
+
+
+
+### Python Flask - Rest API Example
+```
+ghcr.io/andrejvysny/python-rest-api:latest
+```
+- Image for testing rest api.
+- Port: 80

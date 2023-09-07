@@ -1,0 +1,18 @@
+name: PHP Cli
+
+on:
+  push:
+    paths:
+      - 'python/rest-api/**'
+      - '.github/workflows/python-rest-api.yml'
+    workflow_dispatch:
+
+jobs:
+
+  build_and_push:
+    uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
+    with:
+      context: ./python/rest-api/
+      tags: ghcr.io/andrejvysny/python-rest-api
+    secrets:
+      access_token: ${{ secrets.GITHUB_TOKEN }}
