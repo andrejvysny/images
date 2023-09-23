@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  fe:
+    image: fe:test
+    ports:
+      - 80:80
+    environment:
+      BACKEND_HOST: backend
+    networks:
+      - my-network
+
+
+  backend:
+    image: be:test
+    networks:
+      - my-network
+networks:
+  my-network:
