@@ -3,4 +3,4 @@ RUN apt-get update && apt-get install -y curl nano unzip zip iputils-ping
 
 COPY index.php /var/www/html/index.php
 
-EXPOSE 80
+EXPOSE 8080

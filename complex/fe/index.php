@@ -8,6 +8,22 @@
 </head>
 <body>
 
+    <p>
+        Backend: <?= $_ENV['BACKEND_HOST'] ?>
+    </p>
+
+    <p>
+        TEST_ENV = <?= $_ENV['TEST_ENV'] ?>
+    </p>
+
+    <p>
+    SERVER_ADDR = <?= $_ENV['SERVER_ADDR'] ?>
+    </p>
+
+    <p>
+    SERVER_NAME = <?= $_ENV['SERVER_NAME'] ?>
+    </p>
+
 
 <h1>Data from API:</h1>
 
@@ -21,7 +37,7 @@
     const endpoint = "<?= $_ENV['BACKEND_HOST'] ?>";
 
     document.addEventListener("DOMContentLoaded", () => {
-        fetch("http://backend/")
+        fetch(endpoint)
             .then(response => {
                 // Check if the response status is OK (200)
                 if (!response.ok) {
