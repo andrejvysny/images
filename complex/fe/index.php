@@ -24,7 +24,11 @@
     SERVER_NAME = <?= $_SERVER['SERVER_NAME'] ?>
     </p>
 
+    <p>
+    SERVER_PORT = <?= $_SERVER['SERVER_PORT'] ?>
+    </p>
 
+    <hr>
 <h1>Data from API:</h1>
 
 <p id="message">
