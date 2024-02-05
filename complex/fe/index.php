@@ -17,11 +17,11 @@
     </p>
 
     <p>
-    SERVER_ADDR = <?= $_ENV['SERVER_ADDR'] ?>
+    SERVER_ADDR = <?= $_SERVER['SERVER_ADDR'] ?>
     </p>
 
     <p>
-    SERVER_NAME = <?= $_ENV['SERVER_NAME'] ?>
+    SERVER_NAME = <?= $_SERVER['SERVER_NAME'] ?>
     </p>
 
 
