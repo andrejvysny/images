@@ -27,7 +27,19 @@
             width: fit-content;
             padding: 40px;
         }
+        #loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
 
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -61,34 +73,29 @@
 
 <div class="data">
     <h1>Data from PUBLIC API: JS Fetch</h1>
-
     <p id="message"></p>
-     <div id="loader"></div>
-
-
+    <div id="loader"></div>
 </div>
 
 <div class="data">
-
-<h1>Data from PRIVATE API: PHP Curl</h1>
-
-<?php
-$api_url = $_ENV['PRIVATE_BACKEND_HOST'];
-if ($api_url) {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $api_url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
-    if (curl_errno($ch)) {
-        echo "Error: " . curl_error($ch);
-    } else {
-        curl_close($ch);
-        echo "<pre>";
-        print_r($response);
-        echo "</pre>";
+    <h1>Data from PRIVATE API: PHP Curl</h1>
+    <?php
+    $api_url = $_ENV['PRIVATE_BACKEND_HOST'];
+    if ($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo "Error: " . curl_error($ch);
+        } else {
+            curl_close($ch);
+            echo "<pre>";
+            print_r($response);
+            echo "</pre>";
+        }
     }
-}
-?>
+    ?>
 </div>
 
 <script>
@@ -100,20 +107,16 @@ if ($api_url) {
         setTimeout(() => {
             fetch(endpoint)
                 .then(response => {
-                    // Check if the response status is OK (200)
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
-
-                    // Parse the response body as JSON
-                    return response.json();
+                    return response.text();
                 })
                 .then(data => {
-                    document.getElementById('message').textContent = data.toString();
+                    document.getElementById('message').textContent = data;
                     document.getElementById('loader').remove();
                 })
                 .catch(error => {
-                    // Handle any errors that occurred during the fetch
                     console.error('Fetch error:', error);
                 });
         }, 1500)
