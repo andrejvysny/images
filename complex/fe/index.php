@@ -78,6 +78,13 @@
     <div id="loader"></div>
 </div>
 
+
+<div class="data">
+    <h1>Data from PRIVATE API: JS Fetch</h1>
+    <p id="message_private"></p>
+    <div id="loader_private"></div>
+</div>
+
 <div class="data">
     <h1>Data from PRIVATE API: PHP Curl</h1>
     <?php
@@ -102,6 +109,7 @@
 <script>
 
     const endpoint = "<?= $_ENV['BACKEND_HOST'] ?>";
+    const endpointprivate = "<?= $_ENV['PRIVATE_BACKEND_HOST'] ?>";
 
     document.addEventListener("DOMContentLoaded", () => {
 
@@ -122,6 +130,25 @@
                 });
         }, 1500)
 
+        setTimeout(() => {
+            fetch(endpointprivate)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('message_private').textContent = data;
+                    document.getElementById('loader_private').remove();
+                })
+                .catch(error => {
+                    document.getElementById('message_private').textContent = error;
+                    document.getElementById('message_private').style.color = "red";
+                    document.getElementById('loader_private').remove();
+                    console.error('Fetch error:', error);
+                });
+        }, 1500)
     });
 
 </script>
