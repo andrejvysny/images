@@ -62,9 +62,10 @@
 <div class="data">
     <h1>Data from PUBLIC API: JS Fetch</h1>
 
-    <p id="message">
-        loading ...
-    </p>
+    <p id="message"></p>
+     <div id="loader"></div>
+
+
 </div>
 
 <div class="data">
@@ -108,8 +109,8 @@ if ($api_url) {
                     return response.json();
                 })
                 .then(data => {
-
-                    document.getElementById('message').textContent = data
+                    document.getElementById('message').textContent = data.toString();
+                    document.getElementById('loader').remove();
                 })
                 .catch(error => {
                     // Handle any errors that occurred during the fetch
