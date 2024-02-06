@@ -14,22 +14,20 @@
             padding: 0;
             text-align: center;
             font-family: 'Roboto', sans-serif;
-            background-color: darkgrey;
+            background-color: #333333;
         }
 
+        .variables,
         .data{
             display: block;
-            background-color: azure;
-            margin: auto;
+            background-color: white;
+            margin: 50px auto;
             max-width: 1000px;
+            border-radius: 20px;
+            width: fit-content;
+            padding: 40px;
         }
 
-        .variables{
-            width: fit-content;
-            display: block;
-            background-color: azure;
-            margin: auto;
-        }
     </style>
 </head>
 <body>
@@ -69,7 +67,6 @@
     </p>
 </div>
 
-<hr>
 <div class="data">
 
 <h1>Data from PRIVATE API: PHP Curl</h1>
