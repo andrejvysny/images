@@ -1,3 +1,7 @@
+<?php 
+require_once "./functions.php"
+?>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -8,149 +12,160 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <style>
-        body{
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            font-family: 'Roboto', sans-serif;
-            background-color: #333333;
-        }
 
-        .variables,
-        .data{
-            display: block;
-            background-color: white;
-            margin: 50px auto;
-            max-width: 1000px;
-            border-radius: 20px;
-            width: fit-content;
-            padding: 40px;
-        }
-        #loader {
-            border: 10px solid #f3f3f3; /* Light grey */
-            border-top: 10px solid #3498db; /* Blue */
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            margin: auto;
-            animation: spin 2s linear infinite;
-        }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+    <link href="./style.css" rel="stylesheet"/>
 </head>
 <body>
 
 
-<div class="variables">
-    <p>
-        Backend: <?= $_ENV['BACKEND_HOST'] ?>
-    </p>
+<div class="container">
+    <div class="row my-5">
+        <div class="col-12">
+                <h1 class="text-light text-center" >Analyze connections</h1>
+        </div>
+    </div>
 
-    <p>
-        Private Backend: <?= $_ENV['PRIVATE_BACKEND_HOST'] ?>
-    </p>
 
-    <p>
-        TEST_ENV = <?= $_ENV['TEST_ENV'] ?>
-    </p>
+    <div class="row my-4">
+        <div class="col-md-12">
+            <div class="card py-4">
+                <div class="card-head">
+                    <h3>Current Service</h3>
+                </div>
+                <div class="card-body">
 
-    <p>
-        SERVER_ADDR = <?= $_SERVER['SERVER_ADDR'] ?>
-    </p>
+                <div class="row">
 
-    <p>
-        SERVER_NAME = <?= $_SERVER['SERVER_NAME'] ?>
-    </p>
+                <div class="col-md-6">
+                    <h5 class="mt-5 fw-bold">Server Variables</h5>
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-    <p>
-        SERVER_PORT = <?= $_SERVER['SERVER_PORT'] ?>
-    </p>
+                        <?php 
+                        $server = ["SERVER_NAME", "SERVER_ADDR", "SERVER_PORT","SERVER_PROTOCOL","HTTPS","REMOTE_ADDR","REMOTE_HOST"];
+                        foreach($server as $var){
+                            ?>
+                        <tr>
+                        <td><?= $var?></td>
+                        <td><?= $_SERVER[$var] ?? null?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                    </div>
+
+
+                    <div class="col-md-6">
+                    <h5 class="mt-5 fw-bold">Environment Variables</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php 
+                        $environment = ["BACKEND_HOST", "PRIVATE_BACKEND_HOST", "TEST_ENV"];
+                        foreach($environment as $var){
+                            ?>
+                        <tr>
+                        <td><?= $var?></td>
+                        <td><?= $_ENV[$var] ?? null?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+                    </div>
+
+                   
+
+                </div>
+
+                </div>
+            </div>            
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="card py-4">
+                <div class="card-head">
+                    <h3>Backend Public Service</h3>
+                </div>
+                <div class="card-body">
+
+                <div class="row">
+                        <div class="col-12 py-4 border-bottom">
+                                <h5 class="fw-bold">JS Fetch</h5>
+                                <p class="p-0" id="message"></p>
+                                <div id="loader">
+                                    <div class="spinner-border text-primary " role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>    
+                        </div>
+                    </div>
+
+                </div>
+            </div>            
+        </div>
+
+        <div class="col-md-6 ">
+            <div class="card py-4">
+                <div class="card-head">
+                    <h3>Backend Private Service</h3>    
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-12 py-4 border-bottom">
+                                <h5 class="fw-bold">JS Fetch</h5>
+                                <p class="p-0" id="message_private"></p>
+                                <div id="loader_private">
+                                    <div class="spinner-border text-primary " role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>    
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 py-4">
+                            <h5 class="fw-bold">PHP Curl</h5>
+                            <?= isset($_ENV["PRIVATE_BACKEND_HOST"]) ? getRequest($_ENV["PRIVATE_BACKEND_HOST"]) : "Undefined PRIVATE_BACKEND_HOST"
+                            ?>
+                        </div>
+                    </div>
+
+                </div>
+            </div>            
+        </div>
+    </div>
 </div>
 
-<div class="data">
-    <h1>Data from PUBLIC API: JS Fetch</h1>
-    <p id="message"></p>
-    <div id="loader"></div>
-</div>
 
 
-<div class="data">
-    <h1>Data from PRIVATE API: JS Fetch</h1>
-    <p id="message_private"></p>
-    <div id="loader_private"></div>
-</div>
 
-<div class="data">
-    <h1>Data from PRIVATE API: PHP Curl</h1>
-    <?php
-    $api_url = $_ENV['PRIVATE_BACKEND_HOST'];
-    if ($api_url) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $api_url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        if (curl_errno($ch)) {
-            echo "Error: " . curl_error($ch);
-        } else {
-            curl_close($ch);
-            echo "<pre>";
-            print_r($response);
-            echo "</pre>";
-        }
-    }
-    ?>
-</div>
+
+
 
 <script>
-
     const endpoint = "<?= $_ENV['BACKEND_HOST'] ?>";
     const endpointprivate = "<?= $_ENV['PRIVATE_BACKEND_HOST'] ?>";
-
-    document.addEventListener("DOMContentLoaded", () => {
-
-        setTimeout(() => {
-            fetch(endpoint)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('message').textContent = data;
-                    document.getElementById('loader').remove();
-                })
-                .catch(error => {
-                    console.error('Fetch error:', error);
-                });
-        }, 1500)
-
-        setTimeout(() => {
-            fetch(endpointprivate)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('message_private').textContent = data;
-                    document.getElementById('loader_private').remove();
-                })
-                .catch(error => {
-                    document.getElementById('message_private').textContent = error;
-                    document.getElementById('message_private').style.color = "red";
-                    document.getElementById('loader_private').remove();
-                    console.error('Fetch error:', error);
-                });
-        }, 1500)
-    });
-
 </script>
+<script defer src="./script.js"></script>
+
 </body>
 </html>
