@@ -2,18 +2,30 @@ version: "3.8"
 
 services:
   fe:
-    image: fe:test
+    image: complex-fe
+    build:
+      context: ./fe
     ports:
       - 80:80
     environment:
-      BACKEND_HOST: backend
-    networks:
-      - my-network
+      BACKEND_HOST: http://localhost:8080
+      PRIVATE_BACKEND_HOST: http://be-private:8080
+    volumes:
+      - ./fe/index.php:/var/www/html/index.php
+      - ./fe/style.css:/var/www/html/style.css
 
+  be:
+    image: complex-be
+    build:
+      context: ./be
+    ports:
+      - 8080:8080
+    environment:
+      MESSAGE: "BE_PUBLIC: Message from ENV variable"
 
-  backend:
-    image: be:test
-    networks:
-      - my-network
-networks:
-  my-network:
+  be-private:
+    image: complex-be
+    build:
+      context: ./be
+    environment:
+      MESSAGE: "BE_PRIVATE: Message from ENV variable"
