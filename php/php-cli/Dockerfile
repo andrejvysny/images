@@ -1,4 +1,4 @@
-FROM php:8.1-cli
+FROM php:8.3-cli
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_NO_INTERACTION 1
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-ARG extensions="gd xdebug intl exif opcache pdo_mysql amqp"
+ARG extensions="gd xdebug intl exif opcache pdo_mysql amqp openssl pdo_pgsql pgsql"
 
 RUN install-php-extensions ${extensions}
 

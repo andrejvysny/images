@@ -5,7 +5,6 @@ on:
     paths:
       - 'php/php-apache/**'
       - '.github/workflows/php-apache.yml'
-    workflow_dispatch:
 
 jobs:
  
@@ -13,6 +12,6 @@ jobs:
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./php/php-apache/
-      tags: ghcr.io/andrejvysny/php-apache:8.1
+      tags: ghcr.io/andrejvysny/php-apache:8.3
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}

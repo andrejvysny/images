@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.3-apache
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-ARG extensions="gd intl exif opcache pdo_mysql pdo_pgsql mysqli amqp"
+ARG extensions="gd intl exif opcache pdo_mysql pdo_pgsql mysqli amqp pdo_pgsql pgsql"
 
 RUN install-php-extensions ${extensions}
 
