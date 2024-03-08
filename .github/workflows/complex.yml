@@ -9,6 +9,8 @@ on:
 
 jobs:
   tag:
+    outputs:
+      short: ${{ steps.commit.outputs.short }}
     runs-on: ubuntu-latest
     steps:
       - id: commit
@@ -26,7 +28,7 @@ jobs:
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./complex/fe/
-      tags: ghcr.io/andrejvysny/complex-fe:${{ steps.commit.outputs.short }}
+      tags: ghcr.io/andrejvysny/complex-fe:${{needs.tag.outputs.short}}
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -35,6 +37,6 @@ jobs:
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./complex/be/
-      tags: ghcr.io/andrejvysny/complex-be:${{ steps.commit.outputs.short }}
+      tags: ghcr.io/andrejvysny/complex-be:${{needs.tag.outputs.short}}
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
