@@ -109,7 +109,7 @@ require_once "./functions.php"
                 <div class="row">
                         <div class="col-12 py-4 border-bottom">
                                 <h5 class="fw-bold">JS Fetch</h5>
-                                <p class="p-0" id="message"></p>
+                                <p class="p-0" ><pre id="message"></pre></p>
                                 <div id="loader">
                                     <div class="spinner-border text-primary " role="status">
                                         <span class="visually-hidden">Loading...</span>
@@ -123,8 +123,9 @@ require_once "./functions.php"
                 <div class="row">
                         <div class="col-12 py-4">
                             <h5 class="fw-bold">PHP Curl</h5>
-                            <?= isset($_ENV["BACKEND_HOST"]) ? getRequest($_ENV["BACKEND_HOST"]) : "Undefined BACKEND_HOST"
-                            ?>
+                            <pre>
+                            <?= isset($_ENV["BACKEND_HOST"]) ? getRequest($_ENV["BACKEND_HOST"]) : "Undefined BACKEND_HOST"?>
+                            </pre>
                         </div>
                     </div>
             </div>            
@@ -140,7 +141,7 @@ require_once "./functions.php"
                     <div class="row">
                         <div class="col-12 py-4 border-bottom">
                                 <h5 class="fw-bold">JS Fetch</h5>
-                                <p class="p-0" id="message_private"></p>
+                                <p class="p-0"><pre id="message_private"></pre></p>
                                 <div id="loader_private">
                                     <div class="spinner-border text-primary " role="status">
                                         <span class="visually-hidden">Loading...</span>
@@ -152,8 +153,9 @@ require_once "./functions.php"
                     <div class="row">
                         <div class="col-12 py-4">
                             <h5 class="fw-bold">PHP Curl</h5>
-                            <?= isset($_ENV["PRIVATE_BACKEND_HOST"]) ? getRequest($_ENV["PRIVATE_BACKEND_HOST"]) : "Undefined PRIVATE_BACKEND_HOST"
-                            ?>
+                            <pre>
+                                <?= isset($_ENV["PRIVATE_BACKEND_HOST"]) ? getRequest($_ENV["PRIVATE_BACKEND_HOST"]) : "Undefined PRIVATE_BACKEND_HOST"?>
+                            </pre>
                         </div>
                     </div>
 
