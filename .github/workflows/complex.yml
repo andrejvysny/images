@@ -5,39 +5,22 @@ on:
     paths:
       - 'complex/**'
       - '.github/workflows/complex.yml'
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-  tag:
-    outputs:
-      short: ${{ steps.commit.outputs.short }}
-    runs-on: ubuntu-latest
-    steps:
-      - id: commit
-        uses: prompt/actions-commit-hash@v3
-      - uses: actions/checkout@v2
-      - name: Bump version and push tag
-        uses: mathieudutour/github-tag-action@v6.1
-        with:
-          custom_tag: ${{steps.commit.outputs.short}}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag_prefix: ""
-  
   
   frontend:
-    needs: tag
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./complex/fe/
-      tags: ghcr.io/andrejvysny/complex-fe:${{needs.tag.outputs.short}}
+      tags: ghcr.io/andrejvysny/complex-fe:latest
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
 
   backend:
-    needs: tag
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./complex/be/
-      tags: ghcr.io/andrejvysny/complex-be:${{needs.tag.outputs.short}}
+      tags: ghcr.io/andrejvysny/complex-be:latest
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
