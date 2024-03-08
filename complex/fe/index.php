@@ -100,7 +100,7 @@ require_once "./functions.php"
 
     <div class="row my-4">
         <div class="col-md-6">
-            <div class="card py-4" style="background: lightblue">
+            <div class="card py-4" style="background: #d8edf3">
                 <div class="card-head">
                     <h3>Backend Public Service</h3>
                 </div>
@@ -131,7 +131,7 @@ require_once "./functions.php"
 
         <div class="col-md-6 ">
             <div class="card py-4">
-                <div class="card-head" style="background: lightred">
+                <div class="card-head" style="background: #f3d8d8">
                     <h3>Backend Private Service</h3>    
                 </div>
                 <div class="card-body">

@@ -8,17 +8,7 @@ on:
     workflow_dispatch:
 
 jobs:
-  variables: 
-      runs-on: ubuntu-latest
-      steps:
-      - name: Set outputs
-        id: vars
-        run: echo "GITHUB_SHA=${{ github.sha }}"
-      - name: test
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-      - name: Check outputs
-        run: echo ${{ steps.vars.outputs.sha_short }}
-
+  
   frontend:
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
@@ -31,6 +21,6 @@ jobs:
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./complex/be/
-      tags: ghcr.io/andrejvysny/complex-be:${{ github.sha }}
+      tags: ghcr.io/andrejvysny/complex-be
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
