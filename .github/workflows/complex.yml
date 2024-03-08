@@ -8,19 +8,33 @@ on:
     workflow_dispatch:
 
 jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - id: commit
+        uses: prompt/actions-commit-hash@v3
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          custom_tag: ${{steps.commit.outputs.short}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+  
   
   frontend:
+    needs: tag
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./complex/fe/
-      tags: ghcr.io/andrejvysny/complex-fe
+      tags: ghcr.io/andrejvysny/complex-fe:${{ steps.commit.outputs.short }}
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
 
   backend:
+    needs: tag
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./complex/be/
-      tags: ghcr.io/andrejvysny/complex-be
+      tags: ghcr.io/andrejvysny/complex-be:${{ steps.commit.outputs.short }}
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
