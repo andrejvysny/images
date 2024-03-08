@@ -130,8 +130,8 @@ require_once "./functions.php"
         </div>
 
         <div class="col-md-6 ">
-            <div class="card py-4">
-                <div class="card-head" style="background: #f3d8d8">
+            <div class="card py-4" style="background: #f3d8d8">
+                <div class="card-head">
                     <h3>Backend Private Service</h3>    
                 </div>
                 <div class="card-body">
