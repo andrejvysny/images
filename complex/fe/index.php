@@ -119,6 +119,14 @@ require_once "./functions.php"
                     </div>
 
                 </div>
+
+                <div class="row">
+                        <div class="col-12 py-4">
+                            <h5 class="fw-bold">PHP Curl</h5>
+                            <?= isset($_ENV["BACKEND_HOST"]) ? getRequest($_ENV["BACKEND_HOST"]) : "Undefined BACKEND_HOST"
+                            ?>
+                        </div>
+                    </div>
             </div>            
         </div>
 

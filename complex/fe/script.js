@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return response.text();
             })
             .then(data => {
-                document.getElementById('message').textContent = data;
+                document.getElementById('message').textContent = JSON.stringify(data, undefined,2);
                 document.getElementById('loader').remove();
             })
             .catch(error => {
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return response.text();
             })
             .then(data => {
-                document.getElementById('message_private').textContent = data;
+                document.getElementById('message_private').textContent = JSON.stringify(data, undefined,2);
                 document.getElementById('loader_private').remove();
             })
             .catch(error => {

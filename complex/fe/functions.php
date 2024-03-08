@@ -9,6 +9,10 @@ function getRequest($api_url){
         return "Error: " . curl_error($ch);
     } else {
         curl_close($ch);
-        return $response;
+
+        $decodedResponse = json_decode($response, true);
+        $prettyJson = json_encode($decodedResponse, JSON_PRETTY_PRINT);
+
+        return $prettyJson;
     }
 }
