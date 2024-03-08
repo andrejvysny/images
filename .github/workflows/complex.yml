@@ -31,6 +31,6 @@ jobs:
     uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
     with:
       context: ./complex/be/
-      tags: ghcr.io/andrejvysny/complex-be
+      tags: ghcr.io/andrejvysny/complex-be:${{ github.sha }}
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
