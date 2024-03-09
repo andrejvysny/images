@@ -5,7 +5,7 @@ on:
     paths:
       - 'complex/**'
       - '.github/workflows/complex.yml'
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   tag:
