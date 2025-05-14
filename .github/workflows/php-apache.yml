@@ -38,8 +38,8 @@ jobs:
 
 
   docker_build_arm:
-    name: Docker Build and Push
-    runs-on: ubuntu-latest-arm
+    name: Docker Build and Push ARM
+    runs-on: macos-latest
     steps:
       -
         name: Checkout
@@ -64,4 +64,4 @@ jobs:
           context: ./php/php-apache/
           tags: ghcr.io/andrejvysny/php-apache:8.3
           push: true
-          platforms: linux/arm64
+  
