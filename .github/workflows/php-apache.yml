@@ -13,5 +13,6 @@ jobs:
     with:
       context: ./php/php-apache/
       tags: ghcr.io/andrejvysny/php-apache:8.3
+      platforms: linux/arm64, linux/amd64
     secrets:
       access_token: ${{ secrets.GITHUB_TOKEN }}
